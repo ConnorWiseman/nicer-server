@@ -41,10 +41,6 @@
     "https": "^1.0.0",
     "uuid": "^3.1.0"
   },
-  "optionalDependencies": {
-    "bufferutil": "^3.0.2",
-    "utf-8-validate": "^3.0.3"
-  },
   "devDependencies": {
     "bluebird": "^3.5.0",
     "chai": "^4.1.2",

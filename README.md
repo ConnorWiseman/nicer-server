@@ -15,7 +15,7 @@ Thoroughly tested with the built-in [`http@0.0.0`](https://nodejs.org/api/http.h
 
 ## Installation
 ```shell
-npm install --save --no-optional nicer-server
+npm install --save nicer-server
 ```
 
 ## Usage
