@@ -9,6 +9,7 @@
 
 > A nicer HTTP(S) server.
 
+Creates and manages an HTTP(S) server based on a specified callback function, maintaining a Map of active Socket connections to gracefully terminate them when the server closes. All methods return Promises.
 
 Thoroughly tested with the built-in [`http@0.0.0`](https://nodejs.org/api/http.html) and [`https@1.0.0`](https://nodejs.org/api/https.html) modules, and compatible with the [`bluebird@3.5.0`](https://github.com/petkaantonov/bluebird/), [`express@4.15.4`](https://github.com/expressjs/express), [`koa@2.3.0`](https://github.com/koajs/koa), [`ws@3.1.0`](https://github.com/websockets/ws), and [`socket.io@2.0.3`](https://github.com/socketio/socket.io) modules.
 
@@ -19,6 +20,9 @@ npm install --save nicer-server
 ```
 
 ## Usage
+
+### Basic HTTP server
+
 ```javascript
 const server = require('nicer-server');
 
@@ -30,6 +34,64 @@ server((req, res) => {
   res.end('Hello, world!');
 }, options).listen();
 ```
+
+
+### Koa
+
+```javascript
+const Koa    = require('koa');
+const server = require('nicer-server');
+
+let options = {
+  port: 3000
+};
+
+let app = new Koa;
+
+app.use(async (ctx) => {
+  ctx.body = 'Hello, world!';
+});
+
+server(app.callback(), options).listen();
+```
+
+
+### Express
+
+```javascript
+const express = require('express');
+const server  = require('nicer-server');
+
+let options = {
+  port: 3000
+};
+
+let app = express();
+
+app.get('/', (req, res) => {
+  res.end('Hello, world!');
+});
+
+server(app, options).listen();
+```
+
+
+## API
+
+### #close
+
+Destroys remaining sockets to terminate active connections, then closes the underlying HTTP(S) server.
+
+
+### #listen
+
+Creates a new HTTP(S) server, adding event handlers to the `request` and `connection` events to toggle an `idle` flag on incoming Sockets and destroy them if necessary. Resolves once the server is listening.
+
+
+### #restart
+
+Restarts the server. Calls `#close`, then `#listen`.
+
 
 ## Options
 
