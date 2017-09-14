@@ -182,16 +182,24 @@ describe('Unit tests: createServer', () => {
     });
 
     describe('[server] on `request`', () => {
-      let socket, response;
+      let socket, request, response;
 
       beforeEach(() => {
         socket = new mocks.Socket;
+        request = { headers: {}, socket };
         response = new mocks.Response;
+      });
+
+      it('should add `server` object to the request', (done) => {
+        server.listen().then((server) => {
+          server.instance.emit('request', request, response);
+          request.server.should.deep.equal(server);
+        }).should.be.fulfilled.notify(done);
       });
 
       it('should set `idle` flag on incoming socket to `false`', (done) => {
         server.listen().then(() => {
-          server.instance.emit('request', { headers: {}, socket }, response);
+          server.instance.emit('request', request, response);
           socket.idle.should.equal(false);
         }).should.be.fulfilled.notify(done);
       });
@@ -199,7 +207,7 @@ describe('Unit tests: createServer', () => {
       describe('[response] on `close`', () => {
         it('should set `idle` flag on closing socket to `true`', (done) => {
           server.listen().then(() => {
-            server.instance.emit('request', { headers: {}, socket }, response);
+            server.instance.emit('request', request, response);
             response.emit('close');
             socket.idle.should.equal(true);
           }).should.be.fulfilled.notify(done);
@@ -207,7 +215,7 @@ describe('Unit tests: createServer', () => {
 
         it('should destroy the socket if the server is shutting/shut down', (done) => {
           server.listen().then(() => {
-            server.instance.emit('request', { headers: {}, socket }, response);
+            server.instance.emit('request', request, response);
             return server.close();
           }).then(() => {
             sinon.spy(socket, 'destroy');
@@ -223,7 +231,7 @@ describe('Unit tests: createServer', () => {
       describe('[response] on `finish`', () => {
         it('should set `idle` flag on closing socket to `true`', (done) => {
           server.listen().then(() => {
-            server.instance.emit('request', { headers: {}, socket }, response);
+            server.instance.emit('request', request, response);
             response.emit('finish');
             socket.idle.should.equal(true);
           }).should.be.fulfilled.notify(done);
@@ -231,7 +239,7 @@ describe('Unit tests: createServer', () => {
 
         it('should destroy the socket if the server is shutting/shut down', (done) => {
           server.listen().then(() => {
-            server.instance.emit('request', { headers: {}, socket }, response);
+            server.instance.emit('request', request, response);
             return server.close();
           }).then(() => {
             sinon.spy(socket, 'destroy');
