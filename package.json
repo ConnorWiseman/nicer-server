@@ -1,0 +1,70 @@
+{
+  "name": "nicer-server",
+  "version": "0.0.0",
+  "description": "A nicer HTTP(S) server.",
+  "author": "ConnorWiseman",
+  "contributors": [
+    {
+      "name": "Connor Wiseman",
+      "url": "https://github.com/ConnorWiseman/"
+    }
+  ],
+  "homepage": "https://github.com/ConnorWiseman/nicer-server#readme",
+  "keywords": [
+    "http",
+    "https",
+    "server"
+  ],
+  "files": [
+    "lib/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ConnorWiseman/nicer-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ConnorWiseman/nicer-server/issues"
+  },
+  "license": "MIT",
+  "main": "lib/index.js",
+  "scripts": {
+    "coverage": "codecov",
+    "lint": "eslint lib/",
+    "test": "cross-env NODE_ENV=test nyc mocha test/unit/*.spec.js test/integration/*.spec.js --slow 0"
+  },
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "dependencies": {
+    "debug": "^3.0.1",
+    "http": "0.0.0",
+    "https": "^1.0.0",
+    "uuid": "^3.1.0"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^3.0.2",
+    "utf-8-validate": "^3.0.3"
+  },
+  "devDependencies": {
+    "bluebird": "^3.5.0",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "chalk": "^2.1.0",
+    "codecov": "^2.3.0",
+    "cross-env": "^5.0.5",
+    "eslint": "^4.6.1",
+    "events": "^1.1.1",
+    "express": "^4.15.4",
+    "koa": "^2.3.0",
+    "mocha": "^3.5.3",
+    "nyc": "^11.2.1",
+    "pem": "^1.10.2",
+    "proxyquire": "^1.8.0",
+    "sinon": "^3.2.1",
+    "sinon-chai": "^2.13.0",
+    "socket.io": "^2.0.3",
+    "socket.io-client": "^2.0.3",
+    "supertest": "^3.0.0",
+    "ws": "^3.1.0"
+  }
+}
