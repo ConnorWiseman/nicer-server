@@ -11,7 +11,7 @@
 
 Creates and manages an HTTP(S) server based on a specified callback function, maintaining a Map of active Socket connections to gracefully terminate them when the server closes. All methods return Promises.
 
-Thoroughly tested with the built-in [`http@0.0.0`](https://nodejs.org/api/http.html) and [`https@1.0.0`](https://nodejs.org/api/https.html) modules, and compatible with the [`bluebird@3.5.0`](https://github.com/petkaantonov/bluebird/), [`express@4.15.4`](https://github.com/expressjs/express), [`koa@2.3.0`](https://github.com/koajs/koa), [`ws@3.1.0`](https://github.com/websockets/ws), and [`socket.io@2.0.3`](https://github.com/socketio/socket.io) modules.
+Thoroughly tested with the built-in [`http@0.0.0`](https://nodejs.org/api/http.html) and [`https@1.0.0`](https://nodejs.org/api/https.html) modules, and compatible with the [`bluebird@3.5.1`](https://github.com/petkaantonov/bluebird/), [`express@4.16.3`](https://github.com/expressjs/express), [`koa@2.5.1`](https://github.com/koajs/koa), [`ws@5.2.1`](https://github.com/websockets/ws), and [`socket.io@2.1.1`](https://github.com/socketio/socket.io) modules.
 
 
 ## Installation
